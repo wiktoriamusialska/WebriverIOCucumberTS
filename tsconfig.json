@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "moduleResolution": "node",
-        "module": "commonjs",
+        "module": "ESNext",
         "target": "es2022",
         "lib": [
             "es2022",
@@ -9,9 +9,8 @@
         ],
         "types": [
             "node",
-            //"webdriverio/asyc",
             "@wdio/globals/types",
-            //"expect-webdriverio",
+            "expect-webdriverio",
             "@wdio/cucumber-framework"
         ],
         "skipLibCheck": true,
