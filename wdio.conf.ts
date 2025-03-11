@@ -1,4 +1,3 @@
-
 export const config: WebdriverIO.Config = {
     //
     // ====================
@@ -6,8 +5,7 @@ export const config: WebdriverIO.Config = {
     // ====================
     // WebdriverIO supports running e2e tests as well as unit and component tests.
     runner: 'local',
-   
-    
+    tsConfigPath: './tsconfig.json',
     
     //
     // ==================
@@ -24,12 +22,9 @@ export const config: WebdriverIO.Config = {
     // The path of the spec files will be resolved relative from the directory of
     // of the config file unless it's absolute.
     //
-   
     specs: [
         './features/**/*.feature'
     ],
-
- 
     // Patterns to exclude.
     exclude: [
         // 'path/to/excluded/files'
@@ -57,9 +52,7 @@ export const config: WebdriverIO.Config = {
     // https://saucelabs.com/platform/platform-configurator
     //
     capabilities: [{
-        maxInstances: 5,
-        browserName: 'chrome',
-        acceptInsecureCerts: true
+        browserName: 'chrome'
     }],
 
     //
@@ -88,8 +81,6 @@ export const config: WebdriverIO.Config = {
     // If you only want to run your tests until a specific amount of tests have failed use
     // bail (default is 0 - don't bail, run all tests).
     bail: 0,
-
-    baseUrl: "https://localhost",
     //
     // Set a base URL in order to shorten url command calls. If your `url` parameter starts
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
@@ -111,7 +102,7 @@ export const config: WebdriverIO.Config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['chromedriver'],
+    // services: [],
     //
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
@@ -134,7 +125,7 @@ export const config: WebdriverIO.Config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    reporters: ['spec',['allure', {outputDir: 'allure-results'}]],
+    reporters: ['spec'],
 
     // If you are using Cucumber you need to specify the location of your step definitions.
     cucumberOpts: {
