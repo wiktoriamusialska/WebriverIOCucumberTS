@@ -5,7 +5,9 @@ Given(/^A web page is opened$/,async function(){
     //Dropdown
     //await browser.url("https://the-internet.herokuapp.com/dropdown");
     //Checkbox
-    await browser.url("https://the-internet.herokuapp.com/checkboxes");
+    //await browser.url("https://the-internet.herokuapp.com/checkboxes");
+    //Windows
+    await browser.url("https://the-internet.herokuapp.com/windows");
     await browser.setTimeout({implicit:15000, pageLoad:1000});
     await browser.maximizeWindow();
 })
@@ -46,10 +48,37 @@ When(/^Perform web interactions$/, async function () {
 
     //Checkbox -select one option
 
-   let ele = await $('//form[@id="checkboxes"]/input[1]');
+   /*let ele = await $('//form[@id="checkboxes"]/input[1]');
     if (!await ele.isSelected()){
         await ele.click();
-    } 
+    } */
+
+    //windows -open new windows
+    await $(`=Click Here`).click();
+    await $(`=Elemental Selenium`).click();
+    let currentWinTitle = await browser.getTitle();
+    let parrentWinHandle = await browser.getWindowHandle();
+    console.log (`>> currentWinTitle: ${currentWinTitle}`);
+
+    //switch to specific window
+    let winHandles = await browser.getWindowHandles();
+    for (let i=0; i<winHandles.length;i++){
+        console.log(`>>Win Handle: ${winHandles[i]}`);
+        await browser.switchToWindow(winHandles[i]);
+        currentWinTitle = await browser.getTitle();
+        if (currentWinTitle === "A free, once-weekly e-mail on how to do test automation like a Pro"){
+            await browser.switchToWindow(winHandles[i]);
+            let headerTxtEleSel = await $(`<h1>`).getTitle();
+            console.log(`>> headerTxtEleSel: ${headerTxtEleSel}`);
+            break;
+        }
+    }
+
+    //Switch back to parent window
+    await browser.switchToWindow(parrentWinHandle);
+    let parrentWinHeaderTxt = await $(`<h3>`).getTitle();
+    console.log(`>>parentWinHeaderTxt: ${parrentWinHeaderTxt}`);
+
    
 
 
