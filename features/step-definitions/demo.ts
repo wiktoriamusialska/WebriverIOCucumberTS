@@ -3,7 +3,9 @@ Given(/^A web page is opened$/,async function(){
     //Inputbox
     //await browser.url("https://the-internet.herokuapp.com/inputs");
     //Dropdown
-    await browser.url("https://the-internet.herokuapp.com/dropdown");
+    //await browser.url("https://the-internet.herokuapp.com/dropdown");
+    //Checkbox
+    await browser.url("https://the-internet.herokuapp.com/checkboxes");
     await browser.setTimeout({implicit:15000, pageLoad:1000});
     await browser.maximizeWindow();
 })
@@ -32,7 +34,7 @@ When(/^Perform web interactions$/, async function () {
     await ddEle.selectByIndex(2); */
 
     //Dropdown - list of option
-    let eleArr= await $$(`select > option`);
+    /*let eleArr= await $$(`select > option`);
     let arr= [];
     for (let i=0; i<await eleArr.length;i++){
         let ele=eleArr[i];
@@ -40,6 +42,17 @@ When(/^Perform web interactions$/, async function () {
         arr.push(val);
     }
     console.log(`>>Option Array: |${arr}|`);
+    */
+
+    //Checkbox -select one option
+
+   let ele = await $('//form[@id="checkboxes"]/input[1]');
+    if (!await ele.isSelected()){
+        await ele.click();
+    } 
+   
+
+
     //await browser.debug(); 
 
 })
