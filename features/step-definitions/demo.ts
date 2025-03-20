@@ -7,7 +7,9 @@ Given(/^A web page is opened$/,async function(){
     //Checkbox
     //await browser.url("https://the-internet.herokuapp.com/checkboxes");
     //Windows
-    await browser.url("https://the-internet.herokuapp.com/windows");
+    //await browser.url("https://the-internet.herokuapp.com/windows");
+    //file upload
+    await browser.url("https://the-internet.herokuapp.com/upload");
     await browser.setTimeout({implicit:15000, pageLoad:1000});
     await browser.maximizeWindow();
 })
@@ -53,6 +55,7 @@ When(/^Perform web interactions$/, async function () {
         await ele.click();
     } */
 
+    /*
     //windows -open new windows
     await $(`=Click Here`).click();
     await $(`=Elemental Selenium`).click();
@@ -79,9 +82,11 @@ When(/^Perform web interactions$/, async function () {
     let parrentWinHeaderTxt = await $(`<h3>`).getTitle();
     console.log(`>>parentWinHeaderTxt: ${parrentWinHeaderTxt}`);
 
+   */
+
+    await $(`#file-upload`).addValue(`${process.cwd()}/features/data/dummy.txt`);
+    await $('#file-submit').click();
    
-
-
     //await browser.debug(); 
 
 })
