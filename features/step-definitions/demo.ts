@@ -9,7 +9,9 @@ Given(/^A web page is opened$/,async function(){
     //Windows
     //await browser.url("https://the-internet.herokuapp.com/windows");
     //file upload
-    await browser.url("https://the-internet.herokuapp.com/upload");
+    //
+    //scroll into
+    await browser.url("https://www.amazon.com.au/");
     await browser.setTimeout({implicit:15000, pageLoad:1000});
     await browser.maximizeWindow();
 })
@@ -83,10 +85,13 @@ When(/^Perform web interactions$/, async function () {
     console.log(`>>parentWinHeaderTxt: ${parrentWinHeaderTxt}`);
 
    */
-
+    /*
+    //frames
     await $(`#file-upload`).addValue(`${process.cwd()}/features/data/dummy.txt`);
     await $('#file-submit').click();
-   
-    //await browser.debug(); 
+   */
 
+    //scroll into view
+    await $('span=Shop Big Smile Sale').scrollIntoView();
+    //await browser.debug();
 })
